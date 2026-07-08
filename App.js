@@ -21,6 +21,7 @@ import Contato from './src/pages/Contato/Contato';
 import Usuario from './src/pages/Usuario/Usuario';
 
 const Tab = createBottomTabNavigator();
+console.log(localStorage);
 
 export default function App() {
 

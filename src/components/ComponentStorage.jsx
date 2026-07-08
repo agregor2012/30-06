@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, FlatList, FlatListComponent, Touchable, 
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { ScrollView } from 'react-native-web';
 import { useState } from 'react';
+import Usuario from '../pages/Usuario/Usuario';
 
 export default function ComponentStorage() {
 
@@ -9,7 +10,7 @@ export default function ComponentStorage() {
     const [pedido, setPedido] = useState('');
     const [telefone, setTelefone] = useState('');
     const [valor, setValor] = useState('');
-    const [usuario, setUsuario] = useState('');
+    const [usuario, setUsuario] = useState([]);
 
     async function salvarUsuario() {
 
@@ -87,6 +88,16 @@ export default function ComponentStorage() {
 
     }
 
+    async function limparStorage() {
+        try {
+            await AsyncStorage.clear();
+            setUsuario([]);
+            alert("AsyncStorage Limpo!")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -120,6 +131,42 @@ export default function ComponentStorage() {
                 <TouchableOpacity onPress={salvarUsuario}>
                     <Text>Salvar Usuário</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity onPress={carregarUsuarios}>
+                    <Text>Exibir Usuario</Text>
+
+                    {usuario.map((usuario) => (
+                        <View>
+                            <View>
+                                <Text>Nome: {usuario.nome}</Text>
+                            </View>
+
+                            <View>
+                                <Text>Pedido: {usuario.pedido}</Text>
+                            </View>
+
+                            <View>
+                                <Text>Telefone: {usuario.telefone}</Text>
+                            </View>
+
+                            <View>
+                                <Text>Valor: {usuario.valor}</Text>
+                            </View>
+
+                        </View>
+                    ))}
+                </TouchableOpacity>
+
+
+                <TouchableOpacity onPress={() => removerUsuario(usuario.id)}>
+                    <Text>Apagar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={limparStorage}>
+                    <Text>Apagar a porra toda</Text>
+                </TouchableOpacity>
+
+
 
             </ScrollView>
 
