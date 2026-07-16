@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, Image, FlatList, FlatListComponent, Touchable, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, FlatListComponent, Touchable, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { ScrollView } from 'react-native-web';
 import { useState } from 'react';
 
 export default function ComponentStorage() {
@@ -9,13 +8,13 @@ export default function ComponentStorage() {
     const [pedido, setPedido] = useState('');
     const [telefone, setTelefone] = useState('');
     const [valor, setValor] = useState('');
-    const [usuario, setUsuario] = useState('');
+    const [usuario, setUsuario] = useState([]);
 
     async function salvarUsuario() {
 
         try {
             const novoUsuario = {
-                id: Date.now().toString,
+                id: Date.now().toString(),
                 nome,
                 pedido,
                 telefone,
@@ -121,6 +120,27 @@ export default function ComponentStorage() {
                     <Text>Salvar Usuário</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={carregarUsuarios}>
+                    <Text>Exibir Usuario</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => removerUsuario()}>
+                    <Text>Excluir</Text>
+                </TouchableOpacity>
+
+                {usuario.map((item) => (
+                    <View key={item.id}>
+                        <Text>Nome: {item.nome}</Text>
+                        <Text>Pedido: {item.pedido}</Text>
+                        <Text>Telefone: {item.telefone}</Text>
+                        <Text>Valor: {item.valor}</Text>
+
+                        <TouchableOpacity onPress={() => removerUsuario(item.id)}>
+                            <Text>Excluir</Text>
+                        </TouchableOpacity>
+                    </View>
+                ))}
+                
             </ScrollView>
 
         </View>

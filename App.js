@@ -1,9 +1,10 @@
+//Imports de Utilitários
 import { StyleSheet, Text, View, Image, FlatList, FlatListComponent } from 'react-native';
 import { Feather } from '@expo/vector-icons'
 import { Picker } from 'react-native-web';
 import { useState } from 'react';
 
-
+//Components
 import ComponentProductFlat from './src/components/ComponentProductFlat';
 import ComponentPicker from './src/components/ComponentPicker';
 import ComponentStorage from './src/components/ComponentStorage';
