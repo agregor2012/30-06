@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, FlatList, FlatListComponent, Button, Tou
 import { Picker, ScrollView } from 'react-native-web';
 import { useNavigation } from '@react-navigation/native';
 import ComponentPicker from '../../components/ComponentPicker';
+import ComponentProductFlat from '../../components/ComponentProductFlat';
 
 
 export default function Pedido() {
@@ -11,106 +12,83 @@ export default function Pedido() {
 
     return (
         <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
 
-            <ScrollView>
-                <View style={styles.container2}>
+                {/* Header */}
+                <View style={styles.testeView}>
+                    <View style={styles.botao}><Text onPress={() => navigation.navigate('Home')}>Home</Text></View>
+                    <View style={styles.botao}><Text onPress={() => navigation.navigate('Sobre')}>Sobre</Text></View>
+                    <View style={styles.botao}><Text onPress={() => navigation.navigate('Pedido')}>Pedido</Text></View>
+                    <View style={styles.botao}><Text onPress={() => navigation.navigate('Contato')}>Contato</Text></View>
+                </View>
+                {/* Header */}
 
-                    <View style={styles.testeView}>
-                        <View style={styles.botao}><Text title="Ir para página home" onPress={() => navigation.navigate('Home')}>Home</Text></View>
-                        <View style={styles.botao}><Text title="Ir para página sobre" onPress={() => navigation.navigate('Sobre')}>Sobre</Text></View>
-                        <View style={styles.botao}><Text title="Ir para página pedidos" onPress={() => navigation.navigate('Pedido')}>Pedido</Text></View>
-                        <View style={styles.botao}><Text title="Ir para página pedidos" onPress={() => navigation.navigate('Contato')}>Contato</Text></View>
-                    </View>
-
-                    <View style={styles.testeView2}>
-                        <Text style={styles.text}> Temos a pizza mais gostoso do Rio de Janeiro!</Text>
-                    </View>
-
-                    <View style={styles.containerPizza}>
-
-                    </View>
-
-                    <View style={styles.testeView2}>
-                        <Text style={styles.text}> Se delicie com nossos incríveis sabores de Pizza!</Text>
-                    </View>
-
-                    <View style={styles.containerPizza}>
-
-                    </View>
+                <View style={styles.textoImagem}>
+                    <Text style={styles.text}>Temos a pizza mais gostosa do Rio de Janeiro!</Text>
                 </View>
 
-            </ScrollView>
-        </View>
+                <View style={styles.containerOpcoes}>
+                        <ComponentProductFlat></ComponentProductFlat>                 
+                </View>
+
+                <View style={styles.textoImagem}>
+                    <Text style={styles.text}>Se delicie com nossos incríveis sabores de Pizza!</Text>
+                </View>
+
+                <View>
+
+
+                </View>
+
+            </ScrollView >
+        </View >
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'gray',
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: 'gray',
     },
 
-    container2: {
-        justifyContent: 'center',
+
+    scrollContainer: {
+        width: '100%',
         alignItems: 'center',
     },
 
-    containerPizza: {
-        width: 700,
-        height: 500,
-        justifyContent: 'center',
+    testeView: {
+        width: '100%',
+        backgroundColor: '#1b1b19',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'blue'
+        paddingVertical: 5,
     },
 
-    buttonPizza: {
-        backgroundColor: '#00f7ff',
-        borderRadius: 8,
+    textoImagem: {
+        width: '100%',
+        backgroundColor: '#ff9900',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 200,
-        height: 80
-    },
-
-    textButtonPizza: {
-        fontSize: 20,
-        textAlign: 'center',
     },
 
     text: {
-        fontSize: 25,
-        borderRadius: 8,
+        fontSize: 15,
         textAlign: 'center',
-    },
-
-
-    testeView: {
-        backgroundColor: '#1b1b19',
-        width: '100%',
-        height: 60,
-        flexDirection: 'row',
-        textAlign: 'center',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-    },
-
-    testeView2: {
-        backgroundColor: '#ff9900',
-        width: '100%',
-        height: 40,
-        textAlign: 'center',
-        justifyContent: 'center'
+        paddingHorizontal: 15,
     },
 
     botao: {
-        backgroundColor: '#ffa600', // Cor de fundo azul
-        paddingVertical: 12,       // Espaçamento interno vertical
-        paddingHorizontal: 24,     // Espaçamento interno horizontal
-        borderRadius: 8,           // Cantos arredondados
-        elevation: 3,              // Sombra leve para Android
+        backgroundColor: '#ffa600',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 8,
+        margin: 5,
+        elevation: 3,
         shadowOpacity: 0.25,
         shadowRadius: 6,
     },
+
 });

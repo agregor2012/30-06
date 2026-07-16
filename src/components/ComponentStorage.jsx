@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, FlatList, FlatListComponent, Touchable, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useState } from 'react';
+import Usuario from '../pages/Usuario/Usuario';
 
 export default function ComponentStorage() {
 
@@ -84,6 +85,16 @@ export default function ComponentStorage() {
 
         }
 
+    }
+
+    async function limparStorage() {
+        try {
+            await AsyncStorage.clear();
+            setUsuario([]);
+            alert("AsyncStorage Limpo!")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
